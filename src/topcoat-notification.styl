@@ -1,16 +1,15 @@
-@import notification-mixin
+@import notification-base-mixin
 
 /*
   Topcoat notification badge
   ---------------------------------
 
-  <span class="notification">1</span>
+  <span class="topcoat-notification">1</span>
 
 */
 
 .topcoat-notification
   notification-base()
-  border-radius var-border-radius
-  background-color var-bg-color
-  color var-color
-  font var-font
+  border-radius var-notification-border-radius
+  background-color var-notification-bg-color
+  color var-notification-color

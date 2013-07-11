@@ -17,15 +17,14 @@ limitations under the License.
   Topcoat notification badge
   ---------------------------------
 
-  <span class="notification">1</span>
+  <span class="topcoat-notification">1</span>
 
 */
 .topcoat-notification {
   display: inline-block;
   padding: 0.15em 0.5em 0.2em;
-  margin-left: 6px;
+  margin-left: 5px;
   border-radius: 2px;
   background-color: #ec514e;
   color: #fff;
-  font: 0.875em "Source Sans", helvetica, arial, sans-serif;
 }
