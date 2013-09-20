@@ -1,21 +1,13 @@
 {
-  "name": "notification",
+  "name": "topcoat-notification",
   "version": "0.0.0",
   "description": "Topcoat notification",
-  "main": "topcoat-notification.css",
-  "topcoat": {
-    "controls": {
-      "topcoat/notification-base": ""
-    },
-    "utils": {
-      "topcoat/utils": ""
-    }
-  },
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "prepublish": "grunt"
   },
   "repository": {
     "type": "git",
@@ -27,18 +19,23 @@
     "topcoat",
     "adobe"
   ],
-  "author": "@an_rei Andrei Oprea",
+  "author": "@garthdb Garth Braithwaite",
   "license": "Apache",
   "devDependencies": {
-    "grunt-contrib-watch": "~0.3.1",
-    "grunt-contrib-nodeunit": "~0.1.2",
     "grunt": "~0.4.1",
+    "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-stylus": "~0.5.0",
     "grunt-contrib-clean": "~0.4.1",
-    "grunt-zip": "~0.7.0",
     "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-topcoat": "0.0.7",
     "grunt-contrib-jade": "~0.5.0",
-    "debug": "~0.7.2"
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-topdoc": "~0.1.3",
+    "topdoc-theme": "~0.2.6"
+  },
+  "dependencies": {
+    "topcoat-utils": "~0.1.0",
+    "topcoat-theme": "~0.5.23",
+    "topcoat-notification-base": "0.0.1"
   }
 }
