@@ -15,7 +15,26 @@
 * limitations under the License.
 *
 */
-@import notification
+.notification,
+.topcoat-notification {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  background-clip: padding-box;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+  cursor: default;
+  user-select: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-decoration: none;
+}
 /* topdoc
   name: Notification
   description: Notification badge
@@ -27,12 +46,10 @@
     - mobile
     - notification
 */
-
-.topcoat-notification
-  @extend .notification
-  padding: var-notification-padding;
-  margin-left: var-notification-margin;
-  border-radius: var-notification-border-radius;
-  background-color: var-notification-bg-color;
-  color: var-notification-color;
-
+.topcoat-notification {
+  padding: 0.15em 0.5em 0.2em;
+  margin-left: 5px;
+  border-radius: 2px;
+  background-color: #ec514e;
+  color: #fff;
+}
