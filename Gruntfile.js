@@ -5,43 +5,75 @@ module.exports = function(grunt) {
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-        gruntfile: {
-            src: 'Gruntfile.js'
-        },
-
-        topcoat: {
-            download: {
-                options: {
-                    srcPath: 'tmp/src/',
-                    repos: '<%= pkg.topcoat %>'
-                }
-            }
-        },
-
-        unzip: {
-            controls: {
-                src: 'tmp/src/controls/*.zip',
-                dest: 'tmp/src/controls'
-            },
-            utils: {
-                src: 'tmp/src/utils/*.zip',
-                dest: 'tmp/src/utils'
-            }
-        },
 
         clean: {
-            tmp: ['tmp'],
-            zip: ['tmp/src/*.zip', 'tmp/src/controls/*.zip', 'tmp/src/skins/*.zip', 'tmp/src/utils/*.zip']
+            release: ['css']
         },
 
-        compile: {
-            stylus: {
+        stylus: {
+            mobilelight: {
                 options: {
-                    import: ['utils', 'variables'],
+                    paths: ['node_modules/topcoat-notification-base/src', 'node_modules/topcoat-utils/src/mixins', 'node_modules/topcoat-theme/src'],
+                    import: ['theme-topcoat-mobile-light'],
                     compress: false
                 },
-                files: {
-                    'release/css/topcoat-notification.css': ['src/copyright.styl', 'src/topcoat-notification.styl']
+
+                files: [{
+                    src: 'src/topcoat-notification.styl',
+                    dest: 'css/topcoat-notification-mobile-light.css'
+                }]
+            },
+
+            mobiledark: {
+                options: {
+                    paths: ['node_modules/topcoat-notification-base/src', 'node_modules/topcoat-utils/src/mixins', 'node_modules/topcoat-theme/src'],
+                    import: ['theme-topcoat-mobile-dark'],
+                    compress: false
+                },
+
+                files: [{
+                    src: 'src/topcoat-notification.styl',
+                    dest: 'css/topcoat-notification-mobile-dark.css'
+                }]
+            },
+
+            desktoplight: {
+                options: {
+                    paths: ['node_modules/topcoat-notification-base/src', 'node_modules/topcoat-utils/src/mixins', 'node_modules/topcoat-theme/src'],
+                    import: ['theme-topcoat-desktop-light'],
+                    compress: false
+                },
+                files: [{
+                    src: 'src/topcoat-notification.styl',
+                    dest: 'css/topcoat-notification-desktop-light.css'
+                }]
+            },
+
+            desktopdark: {
+                options: {
+                    paths: ['node_modules/topcoat-notification-base/src', 'node_modules/topcoat-utils/src/mixins', 'node_modules/topcoat-theme/src'],
+                    import: ['theme-topcoat-desktop-dark'],
+                    compress: false
+                },
+
+                files: [{
+                    src: 'src/topcoat-notification.styl',
+                    dest: 'css/topcoat-notification-desktop-dark.css'
+                }]
+            }
+        },
+
+        topdoc: {
+            usageguides: {
+                options: {
+                    source: 'css',
+                    destination: "demo",
+                    template: "node_modules/topdoc-theme/",
+                    templateData: {
+                      "title": "Topcoat",
+                      "subtitle": "CSS for clean and fast web apps",
+                      "homeURL": "http://topcoat.io"
+                    }
                 }
             }
         },
@@ -49,46 +81,40 @@ module.exports = function(grunt) {
         cssmin: {
             minify: {
                 expand: true,
-                cwd: 'release/css/',
+                cwd: 'css',
                 src: ['*.css', '!*.min.css'],
-                dest: 'release/css/',
+                dest: 'css',
                 ext: '.min.css'
             }
         },
 
-        jade: {
-            compile: {
-                expand: true,
-                cwd: 'test/perf',
-                src: ['*.jade'],
-                dest: 'test/perf/',
-                ext: '.test.html'
+        simplemocha: {
+            all: {
+                src: ['test/*.test.js']
             }
         },
-        nodeunit: {
-            tests: ['test/*.test.js']
-        },
+
         watch: {
-            files: 'src/*.styl',
-            tasks: ['build']
+            files: 'src/**/*.styl',
+            tasks: ['build', 'test']
         }
     });
+
 
     // These plugins provide necessary tasks.
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-stylus');
     grunt.loadNpmTasks('grunt-contrib-jade');
-    grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks('grunt-topcoat');
-    grunt.loadNpmTasks('grunt-zip');
+    grunt.loadNpmTasks('grunt-simple-mocha');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
-
-    grunt.loadTasks('tasks');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-topdoc');
 
     // Default task.
-    grunt.registerTask('default', ['topcoat', 'build', 'clean']);
-    grunt.registerTask('build', ['compile', 'cssmin', 'jade', 'nodeunit']);
-	grunt.registerTask('test', ['nodeunit']);
+    grunt.registerTask('default', ['clean', 'build', 'test', 'release']);
+    grunt.registerTask('build', ['stylus']);
+    grunt.registerTask('test', ['simplemocha']);
+    grunt.registerTask('release', ['cssmin', 'topdoc']);
 
 };

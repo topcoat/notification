@@ -1,54 +1,75 @@
-'use strict';
+/**
+ *
+ * Copyright 2012 Adobe Systems Inc.;
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 
-var grunt = require('grunt');
+/*global require, describe, it*/
 
-/*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+var grunt = require('grunt'),
+    assert = require('assert');
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
+describe('Topcoat notification', function() {
+    'use strict';
 
-exports.styleguide = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
-  stylus: function(test) {
-    test.expect(1);
+    it('should output correct mobile light css', function() {
+        var actual = grunt.file.read('css/topcoat-notification-mobile-light.css');
+        var expected = grunt.file.read('test/expected/topcoat-notification-mobile-light.css');
+        assert.equal(actual, expected, 'should generate correct css');
+    });
 
-    var actual = grunt.file.read('release/css/topcoat-notification.css');
-    var expected = grunt.file.read('test/expected/topcoat-notification.css');
-    test.equal(actual, expected, 'should generate correct css');
+    it('mobile light should not have any unrendered variables', function() {
+        var actual = grunt.file.read('css/topcoat-notification-mobile-light.css');
+        assert.equal(actual.match(/var-[a-z-]*[a-z]+/g), null, 'should not have missing vars');
+    });
 
-    test.done();
-  }
-};
 
-exports.variableTest = {
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
-  stylus: function(test) {
-    test.expect(1);
+    it('should output correct mobile dark css', function() {
+        var actual = grunt.file.read('css/topcoat-notification-mobile-dark.css');
+        var expected = grunt.file.read('test/expected/topcoat-notification-mobile-dark.css');
+        assert.equal(actual, expected, 'should generate correct css');
+    });
 
-    var actual = grunt.file.read('release/css/topcoat-notification.css');
-    test.equal(actual.match(/var-/g), null, 'should not have missing vars');
+    it('mobile dark should not have any unrendered variables', function() {
+        var actual = grunt.file.read('css/topcoat-notification-mobile-dark.css');
+        assert.equal(actual.match(/var-[a-z-]*[a-z]+/g), null, 'should not have missing vars');
+    });
 
-    test.done();
-  }
-};
+    it('should output correct desktop dark css', function() {
+        var actual = grunt.file.read('css/topcoat-notification-desktop-dark.css');
+        var expected = grunt.file.read('test/expected/topcoat-notification-desktop-dark.css');
+        assert.equal(actual, expected, 'should generate correct css');
+    });
+
+    it('desktop dark should not have any unrendered variables', function() {
+        var actual = grunt.file.read('css/topcoat-notification-desktop-dark.css');
+        assert.equal(actual.match(/var-[a-z-]*[a-z]+/g), null, 'should not have missing vars');
+    });
+
+
+    it('should output correct desktop light css', function() {
+        var actual = grunt.file.read('css/topcoat-notification-desktop-light.css');
+        var expected = grunt.file.read('test/expected/topcoat-notification-desktop-light.css');
+        assert.equal(actual, expected, 'should generate correct css');
+    });
+
+    it('desktop light should not have any unrendered variables', function() {
+        var actual = grunt.file.read('css/topcoat-notification-desktop-light.css');
+        assert.equal(actual.match(/var-[a-z-]*[a-z]+/g), null, 'should not have missing vars');
+    });
+
+});
+
+
