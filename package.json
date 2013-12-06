@@ -2,6 +2,7 @@
   "name": "topcoat-notification",
   "version": "0.1.1",
   "description": "Topcoat notification",
+  "style": "src/topcoat-notification.css",
   "directories": {
     "test": "test"
   },
