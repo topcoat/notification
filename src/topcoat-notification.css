@@ -27,10 +27,10 @@
     - mobile
     - notification
 */
-.topcoat-notification {
+.notification {
   extend: %notification;
-  padding: var(notification-padding);
-  border-radius: var(notification-border-radius);
-  background-color: var(notification-bg-color);
-  color: var(notification-color);
+  padding: var(padding--notification);
+  border-radius: var(border-radius--notification);
+  background-color: var(bg-color--notification);
+  color: var(color--notification);
 }
