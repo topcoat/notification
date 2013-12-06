@@ -1,0 +1,91 @@
+@font-face {
+  font-family: "Source Sans";
+  src: url('../font/SourceSansPro-Regular.otf');
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: url('../font/SourceSansPro-Light.otf');
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: "Source Sans";
+  src: url('../font/SourceSansPro-Semibold.otf');
+  font-weight: 600;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: hsla(200, 2%, 30%, 1);
+  color: #000;
+  font: 16px "Source Sans", helvetica, arial, sans-serif;
+  font-weight: 400;
+}
+
+:focus {
+  outline-color: transparent;
+  outline-style: none;
+}
+
+.topcoat-notification {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  background: transparent;
+  border: none;
+}
+
+.topcoat-notification {
+  cursor: default;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.topcoat-notification {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background-clip: padding-box;
+}
+
+.topcoat-notification {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.topcoat-notification {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.topcoat-notification {
+  text-overflow: ellipsis;
+}
+
+.topcoat-notification {
+  text-decoration: none;
+}
+
+/* topdoc
+  name: Notification
+  description: Notification badge
+  markup:
+    <span class="topcoat-notification">1</span>
+  tags:
+    - desktop
+    - light
+    - mobile
+    - notification
+*/
+
+.topcoat-notification {
+  padding: 0.15em 0.5em 0.2em;
+  border-radius: 2px;
+  background-color: hsla(1, 81%, 62%, 1);
+  color: #fff;
+}
